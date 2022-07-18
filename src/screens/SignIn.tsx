@@ -1,5 +1,8 @@
 import { VStack, Heading } from 'native-base';
 import React from 'react';
+import Logo from '../assets/logo_primary.svg'
+
+
 
 export function SignIn() {
     return (
@@ -7,6 +10,7 @@ export function SignIn() {
             <Heading color="gray.100" fontSize="xl" mt={20} mb="6">
                 Acesse a sua conta
             </Heading>
+            <Logo width={120} height={40} />
 
         </VStack>
     );
