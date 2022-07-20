@@ -8,7 +8,7 @@ export function Register() {
         <VStack flex={1} p={6} bg="gray.600">
             <Header title="Nova solicitação" />
 
-            <Input placeholder='Número do patrimonio' />
+            <Input placeholder='Número do patrimônio' />
 
             <Input
                 placeholder="Descrição do problema"

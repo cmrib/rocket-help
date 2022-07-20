@@ -25,7 +25,8 @@ target 'rockethelp' do
     # An absolute path to your application root.
     :app_path => "#{Dir.pwd}/.."
   )
-
+  
+  use_frameworks! :linkage => :static
   # Uncomment to opt-in to using Flipper
   # Note that if you have use_frameworks! enabled, Flipper will not work
   #
