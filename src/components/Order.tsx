@@ -1,4 +1,4 @@
-import { HStack, Text, useTheme, Box, VStack, Circle } from "native-base";
+import { HStack, Text, useTheme, Box, VStack, Circle, Pressable, IPressableProps } from "native-base";
 import { ClockAfternoon, Hourglass, CircleWavyCheck } from 'phosphor-react-native'
 
 export type OrderProps = {
@@ -8,7 +8,7 @@ export type OrderProps = {
     status: 'open' | 'closed';
 }
 
-type Props = {
+interface Props extends IPressableProps {
     data: OrderProps
 }
 
@@ -20,42 +20,48 @@ export function Order({ data, ...rest }: Props) {
 
 
     return (
-        <HStack
-            bg="gray.600"
-            mb={4}
-            alignItems="center"
-            justifyContent="space-between"
-            rounded="sm"
-            overflow="hidden"
+        <Pressable
+            {...rest}
         >
-            <Box h="full" w={2} bg={statusColor} />
 
-            <VStack flex={1} my={5} ml={5} >
-                <Text
-                    color="white"
-                    fontSize="md"
+            <HStack
+                bg="gray.600"
+                mb={4}
+                alignItems="center"
+                justifyContent="space-between"
+                rounded="sm"
+                overflow="hidden"
+            >
+                <Box h="full" w={2} bg={statusColor} />
 
-                >
-                    Patrimonio {data.patrimony}
-                </Text>
+                <VStack flex={1} my={5} ml={5} >
+                    <Text
+                        color="white"
+                        fontSize="md"
+
+                    >
+                        Patrimonio {data.patrimony}
+                    </Text>
 
 
-                <HStack alignItems="center">
-                    <ClockAfternoon
-                        size={15}
-                        color={colors.gray['300']}
-                    />
-                    <Text color="gray.200">{data.when}</Text>
-                </HStack>
-            </VStack>
+                    <HStack alignItems="center">
+                        <ClockAfternoon
+                            size={15}
+                            color={colors.gray['300']}
+                        />
+                        <Text color="gray.200">{data.when}</Text>
+                    </HStack>
+                </VStack>
 
-            <Circle bg="gray.500" h={12} w={12} mr={5}>
-                {data.status === 'closed' ?
-                    <CircleWavyCheck size={24} color={statusColor} /> :
-                    <Hourglass size={24} color={statusColor} />
-                }
-            </Circle>
+                <Circle bg="gray.500" h={12} w={12} mr={5}>
+                    {data.status === 'closed' ?
+                        <CircleWavyCheck size={24} color={statusColor} /> :
+                        <Hourglass size={24} color={statusColor} />
+                    }
+                </Circle>
 
-        </HStack>
+            </HStack>
+        </Pressable>
+
     )
 }
