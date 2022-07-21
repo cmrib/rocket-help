@@ -6,7 +6,9 @@ import { SignOut } from "phosphor-react-native";
 import { Order, OrderProps } from "../components/Order";
 import { Button } from "../components/Button";
 import { ChatTeardropText } from 'phosphor-react-native';
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
+import { Alert } from "react-native";
 
 export function Home() {
 
@@ -26,12 +28,22 @@ export function Home() {
     const navigation = useNavigation()
 
     function handleNewOrder() {
-        navigation.navigate('new')
+        navigation.navigate('new');
     }
 
     function handleOpenDetails(orderId: string) {
-        navigation.navigate('details', { orderId })
+        navigation.navigate('details', { orderId });
     }
+
+    function handleLogOut() {
+        auth()
+            .signOut()
+            .catch(error => {
+                console.log(error)
+                return Alert.alert('Sair', 'Não foi possível sair');
+            })
+    };
+
 
     return (
         <VStack flex={1} bg="gray.700" pb={9}>
@@ -48,6 +60,7 @@ export function Home() {
                 <Logo />
                 <IconButton
                     icon={<SignOut size={26} color={colors.gray['300']} />}
+                    onPress={handleLogOut}
                 />
             </HStack>
 
@@ -60,7 +73,7 @@ export function Home() {
                     alignItems="center"
                 >
                     <Heading color="gray.100">
-                        Meus chamados
+                        Solicitações
                     </Heading>
                     <Text color="gray.200">
                         3
