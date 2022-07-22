@@ -38,6 +38,7 @@ export function CardDetails({ title, description, footer = null, icon: Icon, chi
             {
                 !!footer &&
                 <Box borderTopWidth={1} borderTopColor="gray.400" mt={3} >
+
                     <Text mt={3} color="gray.300" fontSize="sm">
                         {footer}
                     </Text>
